@@ -117,7 +117,7 @@ const ExperienceForm: React.FC<ExperienceFormProps> = ({
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select job title" />
+                      <SelectValue placeholder="Select company" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent className="bg-white">
