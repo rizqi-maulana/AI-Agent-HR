@@ -1,103 +1,204 @@
+"use client";
+import JobApplicationForm from "@/app/components/JobApplicationForm";
+import { Users, Info } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
+import { useContext, useState } from "react";
+import { contextApp } from "@/context";
+import BotImage from "@/assets/robot.jpeg";
 
-export default function Home() {
+const Index = () => {
+  const { currentTitle, ConfigRequirement, Logo } = useContext(contextApp);
+  const [showMobileReq, setShowMobileReq] = useState(false);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <header className="w-full bg-primary text-white bg-blue-500 py-6 shadow-md relative">
+        <div className="container mx-auto px-4 flex justify-evenly">
+          {Logo && (
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={Logo}
+              alt="Logo"
+              width={200}
+              height={200}
+              className="hidden xl:block w-max h-20 object-contain"
+              sizes="100vw"
+              quality={100}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          )}
+          <div>
+            <h1 className="text-2xl font-bold text-center">Career Portal</h1>
+            <p className="text-center text-primary-foreground/80">
+              Join our growing team
+            </p>
+          </div>
+
+          <div>
+            <Link
+              href={"/admin"}
+              className="flex items-center gap-1 bg-white text-primary rounded-md px-4 py-2 shadow-md hover:bg-gray-100 transition duration-200 text-black"
+            >
+              <Users size={16} />
+              Admin
+            </Link>
+          </div>
         </div>
+      </header>
+
+      <main className="flex-1 container justify-center gap-5 mx-auto px-4 py-12 flex flex-col xl:flex-row relative">
+        {/* Floating toggle button for mobile */}
+        {currentTitle && (
+          <>
+            <button
+              type="button"
+              className="fixed bottom-6 right-6 z-50 xl:hidden flex items-center justify-center w-14 h-14 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all animate-pulse-btn"
+              onClick={() => setShowMobileReq((v) => !v)}
+              aria-label="Show Job Requirement"
+            >
+              <Info size={28} />
+            </button>
+            {/* Mobile: show requirement as floating panel */}
+            {showMobileReq && (
+              <div
+                className="fixed inset-0 z-50 flex items-end xl:hidden"
+                style={{ background: "rgba(0,0,0,0.3)" }}
+                onClick={() => setShowMobileReq(false)}
+              >
+                <div
+                  className="w-full bg-white rounded-t-2xl shadow-xl p-5 max-h-[60vh] overflow-y-auto animate-slideup-fadein"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <Image
+                      src={BotImage}
+                      alt="AI Assistant"
+                      width={40}
+                      height={40}
+                      className="rounded-full border-2 border-blue-400 shadow-md"
+                    />
+                    <div>
+                      <h2 className="font-semibold text-blue-600 text-lg">
+                        Job Requirement
+                      </h2>
+                      <span className="text-xs text-gray-500">
+                        AI Assistant
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    {ConfigRequirement.filter(
+                      (job) => job.job === currentTitle
+                    ).map((job, idx) => (
+                      <div
+                        className="text-sm leading-relaxed border-b pb-2 mb-2 last:border-b-0 last:pb-0 last:mb-0 prose prose-sm"
+                        key={idx}
+                        dangerouslySetInnerHTML={{
+                          __html: job.req.replace(/\n/g, "<br />"),
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    className="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg font-semibold"
+                    onClick={() => setShowMobileReq(false)}
+                  >
+                    Tutup
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+
+        {/* Desktop: show requirement as usual */}
+        {currentTitle && (
+          <div className="w-full max-w-md flex flex-col items-start gap-4 hidden xl:flex animate-fadein">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0">
+                <Image
+                  src={BotImage}
+                  alt="AI Assistant"
+                  width={48}
+                  height={48}
+                  className="rounded-full border-2 border-blue-400 shadow-md"
+                />
+              </div>
+              <div className="bg-gradient-to-br from-blue-500 to-blue-400 text-white px-5 py-4 rounded-2xl rounded-bl-md shadow-lg max-w-xs relative">
+                <h2 className="font-semibold mb-2 flex items-center gap-2">
+                  <span className="inline-block bg-white/20 px-2 py-1 rounded text-xs font-medium">
+                    AI Assistant
+                  </span>
+                  <span className="text-base">Job Requirement</span>
+                </h2>
+                <div className="flex flex-col gap-2">
+                  {ConfigRequirement.filter(
+                    (job) => job.job === currentTitle
+                  ).map((job, idx) => (
+                    <div
+                      className="text-sm leading-relaxed prose prose-sm"
+                      key={idx}
+                      dangerouslySetInnerHTML={{
+                        __html: job.req.replace(/\n/g, "<br />"),
+                      }}
+                    />
+                  ))}
+                </div>
+                <span className="absolute left-3 -bottom-3 w-5 h-5 bg-blue-400 rounded-br-2xl rotate-45"></span>
+              </div>
+            </div>
+          </div>
+        )}
+        <JobApplicationForm />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      {/* Animasi CSS */}
+      <style jsx global>{`
+        @keyframes slideup-fadein {
+          0% {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-slideup-fadein {
+          animation: slideup-fadein 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes fadein {
+          0% {
+            opacity: 0;
+            transform: scale(0.98);
+          }
+          100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-fadein {
+          animation: fadein 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes pulse-btn {
+          0%,
+          100% {
+            box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+          }
+          50% {
+            box-shadow: 0 0 0 12px rgba(59, 130, 246, 0.15);
+          }
+        }
+        .animate-pulse-btn {
+          animation: pulse-btn 1.5s infinite;
+        }
+      `}</style>
+
+      <footer className="bg-gray-100 py-6">
+        <div className="container mx-auto px-4 text-center text-sm text-gray-600">
+          <p>© 2025 Career Portal. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );
-}
+};
+
+export default Index;

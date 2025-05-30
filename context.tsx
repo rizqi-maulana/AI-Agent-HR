@@ -163,6 +163,7 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
         experienceYears,
         skills,
         coverLetter,
+        isLoading,
         setisLogin,
         setName,
         setEmail,
@@ -176,7 +177,6 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
         setExperienceYears,
         setSkills,
         setCoverLetter,
-        isLoading,
         setIsLoading,
       }}
     >

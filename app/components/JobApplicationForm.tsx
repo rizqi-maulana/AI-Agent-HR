@@ -23,7 +23,7 @@ interface FormData {
 
 const JobApplicationForm: React.FC = () => {
   // const { toast } = useToast();
-  const { setIsLoading, isSuccess } = useContext(contextApp);
+  const { setIsLoading, isSuccess, setCurrentTitle } = useContext(contextApp);
   const [step, setStep] = useState<number>(0);
   const [formData, setFormData] = useState<FormData>({
     personalInfo: {
@@ -81,6 +81,7 @@ const JobApplicationForm: React.FC = () => {
 
   const resetForm = () => {
     setStep(0);
+    setCurrentTitle("");
     setIsLoading(true);
     setFormData({
       personalInfo: {
