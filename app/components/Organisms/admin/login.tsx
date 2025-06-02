@@ -31,7 +31,7 @@ const FormLogin = () => {
   );
   return (
     <>
-      <Toaster />
+      <Toaster position="top-right" />
       <form
         className="bg-white shadow-lg w-[50%] h-max p-8 rounded-lg flex flex-col gap-6 border border-gray-200"
         onSubmit={handleSubmit}

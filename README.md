@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 [Product Name]
+> [One-line description - What is your product concept?]
 
-## Getting Started
+![Main screen screenshot](image_URL)
 
-First, run the development server:
+## 📋 Basic Information
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+> **Note:** When using an external URL, ensure that the access permission is set to allow "anyone with the link" to view the content. If the access settings are incorrect and the content cannot be viewed, it will not be considered for judging.
+
+### 🌐 Prototype URL
+[Deployed service URL]
+
+### 🎥 Presentation Materials (Video or PDF)
+[Presentation materials URL]
+
+### 📱 Demo video on the actual device
+[Video URL explaining how to use the prototype]
+
+---
+
+## 🎯 Product Overview
+
+### Target Users
+[Who will use this service? Define the persona clearly]
+
+### Problem to Solve
+[What problem does this solve and why is this problem important?]
+
+### Solution
+[How does this solve the problem? Explain the core functionality of the service]
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- xx
+- xx
+
+### Backend
+- xx
+- xx
+
+### Database
+- xx
+- xx
+
+### Infrastructure & Deployment
+- xx
+- xx
+
+### Other Tools & APIs
+- xx
+- xx
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🗓️ Development Process
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Technical Challenges
+- [What technical difficulties were encountered and how were they solved?]
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Setup & Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
+- xx
+- xx
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation Steps
+1. xx
+2. xx
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👥 Team Information
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Role | Name | GitHub | Responsibility |
+| --------- | ------ | ----------------------- | -------------- |
+| Team Lead | [Name] | [@username](GitHub URL) | [Role] |
+| Frontend | [Name] | [@username](GitHub URL) | [Role] |
+| Backend | [Name] | [@username](GitHub URL) | [Role] |
+| Design | [Name] | [@username](GitHub URL) | [Role] |
+
+---
+
+## 📝 Notes & Limitations
+- [Precautions when using the service]
+- [Technical limitations]
+- [Known Issues]
+
+---
+
+## 🏆 Appeal Points
+[Anything you want to appeal to the judges - feel free to add anything!]
+
+---
+
+*Made with ❤️ by [Team Name] at NeoTeckPark Hackathon*
